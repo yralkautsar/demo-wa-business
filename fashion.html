@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tanah Langit — Local Fashion Indonesia</title>
+  <meta name="description" content="Tanah Langit — fashion lokal Indonesia yang menggabungkan motif tradisional dengan desain modern. Pesan via WhatsApp."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;0,900;1,400;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #f8f5f0;
+      --bg2: #f2ece3;
+      --bg3: #ebe3d8;
+      --surface: #ffffff;
+      --border: #e0d8cc;
+      --border-dark: #c8bfb0;
+      --ink: #1a1510;
+      --ink-mid: #3d3428;
+      --ink-dim: #8a7d6a;
+      --ink-faint: #c4b89e;
+      --accent: #8b6914;
+      --accent2: #c49a3c;
+      --accent-pale: #fdf8ee;
+      --terra: #9b4e2a;
+      --terra-pale: #fdf2ec;
+      --font-display: 'Playfair Display', serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+      --font-mono: 'DM Mono', monospace;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-weight: 300; line-height: 1.6; overflow-x: hidden; }
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border-dark); }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 56px; height: 68px;
+      background: rgba(248,245,240,0.96); backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { font-family: var(--font-display); font-size: 20px; font-weight: 700; color: var(--ink); text-decoration: none; letter-spacing: 0.02em; }
+    .nav-logo span { font-style: italic; color: var(--accent); }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-dim); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-wa { display: flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #fff; background: var(--ink); padding: 10px 20px; text-decoration: none; transition: background 0.2s; }
+    .nav-wa:hover { background: var(--terra); }
+
+    /* HERO — editorial full height */
+    #hero {
+      min-height: 100vh; padding-top: 68px;
+      display: grid; grid-template-columns: 1fr 1fr;
+    }
+    .hero-left {
+      display: flex; flex-direction: column; justify-content: space-between;
+      padding: 64px 56px; border-right: 1px solid var(--border);
+      background: var(--bg);
+    }
+    .hero-left-top { display: flex; flex-direction: column; justify-content: center; flex: 1; padding: 24px 0; }
+    .hero-eyebrow {
+      font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 28px;
+      display: flex; align-items: center; gap: 12px;
+      opacity: 0; animation: fadeUp 0.5s ease forwards 0.1s;
+    }
+    .hero-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--accent2); }
+    .hero-title {
+      font-family: var(--font-display); font-size: clamp(52px, 6.5vw, 96px);
+      font-weight: 900; line-height: 0.88; letter-spacing: -0.03em; color: var(--ink);
+      margin-bottom: 32px; opacity: 0; animation: fadeUp 0.7s ease forwards 0.2s;
+    }
+    .hero-title em { font-style: italic; color: var(--accent); display: block; }
+    .hero-desc { font-size: 15px; color: var(--ink-mid); line-height: 1.8; max-width: 380px; margin-bottom: 12px; opacity: 0; animation: fadeUp 0.7s ease forwards 0.35s; }
+    .hero-desc-en { font-size: 13px; color: var(--ink-dim); font-style: italic; line-height: 1.7; max-width: 360px; margin-bottom: 40px; opacity: 0; animation: fadeUp 0.7s ease forwards 0.45s; }
+    .hero-actions { display: flex; gap: 12px; align-items: center; opacity: 0; animation: fadeUp 0.7s ease forwards 0.6s; }
+    .btn-primary { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #fff; background: var(--ink); padding: 13px 24px; text-decoration: none; transition: all 0.2s; }
+    .btn-primary:hover { background: var(--terra); }
+    .btn-ghost { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-mid); border: 1px solid var(--border-dark); padding: 13px 24px; text-decoration: none; transition: all 0.2s; }
+    .btn-ghost:hover { border-color: var(--ink); color: var(--ink); }
+    .hero-left-bottom {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+      background: var(--border); border: 1px solid var(--border);
+      opacity: 0; animation: fadeUp 0.7s ease forwards 0.75s;
+    }
+    .hero-bottom-item { background: var(--surface); padding: 18px 16px; }
+    .hero-bottom-num { font-family: var(--font-display); font-size: 28px; font-weight: 700; color: var(--accent); line-height: 1; margin-bottom: 4px; }
+    .hero-bottom-label { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-dim); line-height: 1.4; }
+
+    .hero-right { position: relative; overflow: hidden; }
+    .hero-right-grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; height: 100%; gap: 2px; background: var(--border); }
+    .hero-right-img { overflow: hidden; position: relative; }
+    .hero-right-img img { width: 100%; height: 100%; object-fit: cover; object-position: top; transition: transform 0.5s ease; opacity: 0; animation: fadeIn 0.8s ease forwards; }
+    .hero-right-img:nth-child(1) img { animation-delay: 0.3s; }
+    .hero-right-img:nth-child(2) img { animation-delay: 0.5s; }
+    .hero-right-img:nth-child(3) img { animation-delay: 0.7s; }
+    .hero-right-img:nth-child(4) img { animation-delay: 0.9s; }
+    .hero-right-img:hover img { transform: scale(1.05); }
+    .hero-right-label { position: absolute; bottom: 0; left: 0; right: 0; padding: 8px 12px; background: rgba(255,255,255,0.92); font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-dim); }
+
+    /* STRIP */
+    .strip { overflow: hidden; background: var(--ink); padding: 13px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .strip-track { display: flex; white-space: nowrap; animation: ticker 28s linear infinite; }
+    .strip-item { display: inline-flex; align-items: center; gap: 18px; padding: 0 36px; font-family: var(--font-display); font-size: 16px; font-style: italic; color: rgba(255,255,255,0.2); }
+    .strip-item i { color: var(--accent2); font-style: normal; font-size: 10px; }
+
+    /* SECTION */
+    .section-wrap { max-width: 1200px; margin: 0 auto; padding: 96px 56px; }
+    .section-header { display: flex; align-items: center; gap: 20px; margin-bottom: 16px; }
+    .sec-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
+    .sec-title { font-family: var(--font-display); font-size: clamp(30px, 4vw, 50px); font-weight: 700; letter-spacing: -0.02em; line-height: 1; color: var(--ink); }
+    .sec-title em { font-style: italic; color: var(--terra); }
+    .sec-line { flex: 1; height: 1px; background: var(--border); }
+    .sec-sub { font-size: 14px; color: var(--ink-dim); font-style: italic; margin-bottom: 48px; }
+
+    /* KOLEKSI */
+    #koleksi { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .koleksi-filter { display: flex; gap: 8px; margin-bottom: 36px; flex-wrap: wrap; }
+    .filter-btn { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-dim); border: 1px solid var(--border); padding: 7px 16px; background: none; cursor: pointer; transition: all 0.2s; }
+    .filter-btn.active, .filter-btn:hover { background: var(--ink); border-color: var(--ink); color: #fff; }
+    .koleksi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--border); border: 1px solid var(--border); }
+    .prod-card { background: var(--surface); overflow: hidden; position: relative; }
+    .prod-card-img { position: relative; overflow: hidden; }
+    .prod-card-img img { width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: top; display: block; transition: transform 0.5s ease; }
+    .prod-card:hover img { transform: scale(1.04); }
+    .prod-card-badge { position: absolute; top: 12px; left: 12px; font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 10px; border: 1px solid; }
+    .badge-new { color: var(--terra); border-color: #f4c8aa; background: var(--terra-pale); }
+    .badge-best { color: var(--accent); border-color: #e8d49a; background: var(--accent-pale); }
+    .badge-limited { color: var(--ink-dim); border-color: var(--border-dark); background: #fff; }
+    .prod-card-wa { position: absolute; bottom: 0; left: 0; right: 0; background: var(--ink); padding: 12px; text-align: center; transform: translateY(100%); transition: transform 0.25s ease; text-decoration: none; display: block; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #fff; }
+    .prod-card:hover .prod-card-wa { transform: translateY(0); }
+    .prod-card-body { padding: 18px 20px 22px; }
+    .prod-card-cat { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 6px; }
+    .prod-card-name { font-family: var(--font-display); font-size: 20px; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
+    .prod-card-en { font-size: 12px; color: var(--ink-dim); font-style: italic; margin-bottom: 8px; }
+    .prod-card-desc { font-size: 13px; color: var(--ink-dim); line-height: 1.65; margin-bottom: 14px; }
+    .prod-card-footer { display: flex; align-items: center; justify-content: space-between; }
+    .prod-card-price { font-family: var(--font-display); font-size: 20px; font-weight: 700; color: var(--terra); }
+    .prod-card-sizes { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.08em; color: var(--ink-faint); text-transform: uppercase; }
+    .prod-card-btn { display: flex; align-items: center; gap: 6px; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent2); padding-bottom: 1px; transition: all 0.2s; }
+    .prod-card-btn:hover { color: var(--ink); border-color: var(--ink); }
+
+    /* STORY */
+    #story { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+    .story-img { position: relative; overflow: hidden; }
+    .story-img img { width: 100%; height: 100%; min-height: 500px; object-fit: cover; }
+    .story-img-caption { position: absolute; bottom: 0; left: 0; right: 0; padding: 28px 32px; background: linear-gradient(to top, rgba(26,21,16,0.8) 0%, transparent 100%); }
+    .story-img-caption p { font-family: var(--font-display); font-style: italic; font-size: 17px; color: rgba(255,255,255,0.85); line-height: 1.5; }
+    .story-text { padding: 72px 64px; display: flex; flex-direction: column; justify-content: center; }
+    .story-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; }
+    .story-title { font-family: var(--font-display); font-size: clamp(28px, 3vw, 44px); font-weight: 700; color: var(--ink); line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 24px; }
+    .story-title em { font-style: italic; color: var(--terra); }
+    .story-p { font-size: 15px; color: var(--ink-mid); line-height: 1.85; margin-bottom: 14px; }
+    .story-p-en { font-size: 13px; color: var(--ink-dim); font-style: italic; line-height: 1.7; margin-bottom: 28px; }
+    .story-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .story-tag { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--terra); border: 1px solid #f4c8aa; background: var(--terra-pale); padding: 5px 12px; }
+
+    /* KEUNGGULAN */
+    #keunggulan { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .k-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+    .k-card { background: var(--surface); padding: 36px 28px; transition: background 0.2s; }
+    .k-card:hover { background: var(--bg2); }
+    .k-icon { font-size: 26px; margin-bottom: 14px; }
+    .k-title { font-family: var(--font-display); font-size: 19px; font-weight: 700; color: var(--ink); margin-bottom: 8px; }
+    .k-desc { font-size: 13px; color: var(--ink-dim); line-height: 1.7; }
+    .k-desc em { display: block; font-style: italic; color: var(--ink-faint); margin-top: 4px; }
+
+    /* CARA ORDER */
+    #order { border-top: 1px solid var(--border); }
+    .order-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
+    .order-step { padding: 48px 36px; border-right: 1px solid var(--border); transition: background 0.2s; }
+    .order-step:last-child { border-right: none; }
+    .order-step:hover { background: var(--bg2); }
+    .order-num { font-family: var(--font-display); font-size: 56px; font-weight: 700; color: var(--border-dark); line-height: 1; margin-bottom: 16px; }
+    .order-title { font-family: var(--font-display); font-size: 19px; font-weight: 700; color: var(--ink); margin-bottom: 8px; }
+    .order-desc { font-size: 13px; color: var(--ink-dim); line-height: 1.7; }
+    .order-desc em { display: block; font-style: italic; color: var(--ink-faint); margin-top: 4px; }
+
+    /* CTA */
+    #cta { background: var(--bg3); border-top: 1px solid var(--border); padding: 96px 56px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 24px; position: relative; overflow: hidden; }
+    .cta-img { position: absolute; inset: 0; }
+    .cta-img img { width: 100%; height: 100%; object-fit: cover; opacity: 0.12; }
+    .cta-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); position: relative; }
+    .cta-title { font-family: var(--font-display); font-size: clamp(40px, 5vw, 72px); font-weight: 900; color: var(--ink); line-height: 0.95; letter-spacing: -0.02em; position: relative; }
+    .cta-title em { font-style: italic; color: var(--terra); }
+    .cta-sub { font-size: 15px; color: var(--ink-dim); max-width: 440px; line-height: 1.75; position: relative; }
+    .cta-wa { display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: #fff; background: var(--ink); padding: 15px 36px; text-decoration: none; transition: all 0.2s; position: relative; }
+    .cta-wa:hover { background: var(--terra); }
+    .cta-note { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; color: var(--ink-faint); text-transform: uppercase; position: relative; }
+
+    /* FOOTER */
+    footer { background: var(--ink); border-top: 1px solid rgba(255,255,255,0.04); }
+    .footer-inner { max-width: 1200px; margin: 0 auto; padding: 28px 56px; display: flex; align-items: center; justify-content: space-between; }
+    .footer-logo { font-family: var(--font-display); font-size: 18px; font-weight: 700; color: rgba(255,255,255,0.3); text-decoration: none; }
+    .footer-logo span { font-style: italic; color: var(--accent2); }
+    .footer-copy { font-family: var(--font-mono); font-size: 10px; color: rgba(255,255,255,0.15); letter-spacing: 0.05em; }
+
+    /* ANIMS */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* MOBILE */
+    @media (max-width: 900px) {
+      nav { padding: 0 24px; }
+      .nav-links { display: none; }
+      #hero { grid-template-columns: 1fr; }
+      .hero-right { height: 80vw; }
+      .hero-left { padding: 48px 24px; }
+      .section-wrap { padding: 72px 24px; }
+      .koleksi-grid { grid-template-columns: 1fr 1fr; }
+      .story-grid { grid-template-columns: 1fr; }
+      .story-img img { min-height: 300px; }
+      .story-text { padding: 48px 24px; }
+      .k-grid { grid-template-columns: 1fr 1fr; }
+      .order-grid { grid-template-columns: 1fr 1fr; }
+      #cta { padding: 72px 24px; }
+      .footer-inner { flex-direction: column; gap: 14px; text-align: center; padding: 24px; }
+    }
+    @media (max-width: 560px) {
+      .koleksi-grid { grid-template-columns: 1fr; }
+      .k-grid { grid-template-columns: 1fr; }
+      .order-grid { grid-template-columns: 1fr; }
+      .order-step { border-right: none; border-bottom: 1px solid var(--border); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">Tanah <span>Langit</span></a>
+  <ul class="nav-links">
+    <li><a href="#koleksi">Koleksi</a></li>
+    <li><a href="#story">Brand Story</a></li>
+    <li><a href="#order">Cara Beli</a></li>
+  </ul>
+  <a href="https://wa.me/6281234567890?text=Halo%20Tanah%20Langit%2C%20saya%20ingin%20melihat%20koleksi%20terbaru." target="_blank" class="nav-wa">💬 Order via WA</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-left-top">
+      <div class="hero-eyebrow">Local Fashion · Made in Indonesia</div>
+      <h1 class="hero-title">
+        Wear Your
+        <em>Heritage.</em>
+      </h1>
+      <p class="hero-desc">Fashion lokal yang memadukan motif tradisional Nusantara dengan potongan modern. Bangga pakai produk Indonesia.</p>
+      <p class="hero-desc-en">Local fashion blending traditional Indonesian motifs with modern cuts. Wear your roots with pride.</p>
+      <div class="hero-actions">
+        <a href="#koleksi" class="btn-primary">Lihat Koleksi</a>
+        <a href="https://wa.me/6281234567890?text=Halo%20Tanah%20Langit%2C%20saya%20ingin%20order." target="_blank" class="btn-ghost">Order WA →</a>
+      </div>
+    </div>
+    <div class="hero-left-bottom">
+      <div class="hero-bottom-item">
+        <div class="hero-bottom-num">200+</div>
+        <div class="hero-bottom-label">Desain Eksklusif</div>
+      </div>
+      <div class="hero-bottom-item">
+        <div class="hero-bottom-num">100%</div>
+        <div class="hero-bottom-label">Produk Lokal</div>
+      </div>
+      <div class="hero-bottom-item">
+        <div class="hero-bottom-num">⭐4.8</div>
+        <div class="hero-bottom-label">Rating Pembeli</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-right-grid">
+      <div class="hero-right-img">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80&fit=crop" alt="Koleksi Batik Modern"/>
+        <div class="hero-right-label">Batik Modern</div>
+      </div>
+      <div class="hero-right-img">
+        <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=400&q=80&fit=crop" alt="Tenun Kontemporer"/>
+        <div class="hero-right-label">Tenun Kontemporer</div>
+      </div>
+      <div class="hero-right-img">
+        <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=400&q=80&fit=crop" alt="Casual Series"/>
+        <div class="hero-right-label">Casual Series</div>
+      </div>
+      <div class="hero-right-img">
+        <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=400&q=80&fit=crop" alt="Heritage Collection"/>
+        <div class="hero-right-label">Heritage Collection</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STRIP -->
+<div class="strip">
+  <div class="strip-track">
+    <span class="strip-item"><i>✦</i> Batik Modern</span>
+    <span class="strip-item"><i>✦</i> Tenun Ikat</span>
+    <span class="strip-item"><i>✦</i> Lurik Contemporary</span>
+    <span class="strip-item"><i>✦</i> Ecoprint</span>
+    <span class="strip-item"><i>✦</i> Jumputan</span>
+    <span class="strip-item"><i>✦</i> Heritage Series</span>
+    <span class="strip-item"><i>✦</i> Casual Collection</span>
+    <span class="strip-item"><i>✦</i> Custom Order</span>
+    <span class="strip-item"><i>✦</i> Batik Modern</span>
+    <span class="strip-item"><i>✦</i> Tenun Ikat</span>
+    <span class="strip-item"><i>✦</i> Lurik Contemporary</span>
+    <span class="strip-item"><i>✦</i> Ecoprint</span>
+    <span class="strip-item"><i>✦</i> Jumputan</span>
+    <span class="strip-item"><i>✦</i> Heritage Series</span>
+    <span class="strip-item"><i>✦</i> Casual Collection</span>
+    <span class="strip-item"><i>✦</i> Custom Order</span>
+  </div>
+</div>
+
+<!-- KOLEKSI -->
+<div id="koleksi">
+  <div class="section-wrap">
+    <div class="section-header reveal">
+      <span class="sec-label">Koleksi Terbaru</span>
+      <h2 class="sec-title">New <em>Arrivals</em></h2>
+      <div class="sec-line"></div>
+    </div>
+    <p class="sec-sub reveal">Koleksi terbaru · Stok terbatas · Klik produk untuk tanya & order via WhatsApp</p>
+    <div class="koleksi-filter reveal">
+      <button class="filter-btn active">Semua</button>
+      <button class="filter-btn">Atasan</button>
+      <button class="filter-btn">Dress</button>
+      <button class="filter-btn">Outer</button>
+      <button class="filter-btn">Aksesoris</button>
+    </div>
+    <div class="koleksi-grid">
+
+      <div class="prod-card reveal">
+        <div class="prod-card-img">
+          <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=500&q=80&fit=crop" alt="Batik Kemeja Modern"/>
+          <span class="prod-card-badge badge-new">New</span>
+          <a href="https://wa.me/6281234567890?text=Halo%2C%20saya%20tertarik%20dengan%20*Kemeja%20Batik%20Modern*%20di%20Tanah%20Langit." target="_blank" class="prod-card-wa">💬 Tanya & Order</a>
+        </div>
+        <div class="prod-card-body">
+          <div class="prod-card-cat">Atasan · Batik Modern</div>
+          <div class="prod-card-name">Kemeja Batik Sogan</div>
+          <div class="prod-card-en">Modern Sogan Batik Shirt</div>
+          <p class="prod-card-desc">Kemeja batik tulis motif sogan Yogya dengan potongan slim modern. Cocok untuk formal maupun casual.</p>
+          <div class="prod-card-footer">
+            <div>
+              <div class="prod-card-price">Rp 385.000</div>
+              <div class="prod-card-sizes">S · M · L · XL</div>
+            </div>
+            <a href="https://wa.me/6281234567890?text=Halo%2C%20saya%20tertarik%20dengan%20*Kemeja%20Batik%20Modern*." target="_blank" class="prod-card-btn">Order →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="prod-card reveal">
+        <div class="prod-card-img">
+          <img src="https://images.unsplash.com/photo-1601762603339-fd61e28b698a?w=500&q=80&fit=crop" alt="Dress Tenun"/>
+          <span class="prod-card-badge badge-best">⭐ Terlaris</span>
+          <a href="https://wa.me/6281234567890?text=Halo%2C%20saya%20tertarik%20dengan%20*Dress%20Tenun%20Florata*%20di%20Tanah%20Langit." target="_blank" class="prod-card-wa">💬 Tanya & Order</a>
+        </div>
+        <div class="prod-card-body">
+          <div class="prod-card-cat">Dress · Tenun Ikat</div>
+          <div class="prod-card-name">Dress Tenun Florata</div>
+          <div class="prod-card-en">Flores Ikat Weave Dress</div>
+          <p class="prod-card-desc">Dress midi dari tenun ikat Flores asli dengan siluet A-line yang elegan. Nyaman dipakai seharian.</p>
+          <div class="prod-card-footer">
+            <div>
+              <div class="prod-card-price">Rp 520.000</div>
+              <div class="prod-card-sizes">S · M · L</div>
+            </div>
+            <a href="https://wa.me/6281234567890?text=Halo%2C%20saya%20tertarik%20dengan%20*Dress%20Tenun%20Florata*." target="_blank" class="prod-card-btn">Order →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="prod-card reveal">
+        <div class="prod-card-img">
+          <img src="https://images.unsplash.com/photo-1552902865-b72c031ac5ea?w=500&q=80&fit=crop" alt="Outer Lurik"/>
+          <span class="prod-card-badge badge-limited">Limited</span>
+          <a href="https://wa.me/6281234567890?text=Halo%2C%20saya%20tertarik%20dengan%20*Outer%20Lurik%20Kontemporer*%20di%20Tanah%20Langit." target="_blank" class="prod-card-wa">💬 Tanya & Order</a>
+        </div>
+        <div class="prod-card-body">
+          <div class="prod-card-cat">Outer · Lurik</div>
+          <div class="prod-card-name">Outer Lurik Kontemporer</div>
+          <div class="prod-card-en">Contemporary Lurik Outer Jacket</div>
+          <p class="prod-card-desc">Outer panjang dari kain lurik Klaten dengan desain oversized modern. Statement piece yang versatile.</p>
+          <div class="prod-card-footer">
+            <div>
+              <div class="prod-card-price">Rp 620.000</div>
+              <div class="prod-card-sizes">S · M · L · XL</div>
+            </div>
+            <a href="https://wa.me/6281234567890?text=Halo%2C%20saya%20tertarik%20dengan%20*Outer%20Lurik%20Kontemporer*." target="_blank" class="prod-card-btn">Order →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="prod-card reveal">
+        <div class="prod-card-img">
+          <img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=500&q=80&fit=crop" alt="Blouse Ecoprint"/>
+          <span class="prod-card-badge badge-new">Eco</span>
+          <a href="https://wa.me/6281234567890?text=Halo%2C%20saya%20tertarik%20dengan%20*Blouse%20Ecoprint*%20di%20Tanah%20Langit." target="_blank" class="prod-card-wa">💬 Tanya & Order</a>
+        </div>
+        <div class="prod-card-body">
+          <div class="prod-card-cat">Atasan · Ecoprint</div>
+          <div class="prod-card-name">Blouse Ecoprint Daun</div>
+          <div class="prod-card-en">Natural Leaf Ecoprint Blouse</div>
+          <p class="prod-card-desc">Blouse dari kain sutra dengan motif ecoprint daun tropis. Setiap lembar unik, ramah lingkungan.</p>
+          <div class="prod-card-footer">
+            <div>
+              <div class="prod-card-price">Rp 445.000</div>
+              <div class="prod-card-sizes">S · M · L</div>
+            </div>
+            <a href="https://wa.me/6281234567890?text=Halo%2C%20saya%20tertarik%20dengan%20*Blouse%20Ecoprint%20Daun*." target="_blank" class="prod-card-btn">Order →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="prod-card reveal">
+        <div class="prod-card-img">
+          <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=500&q=80&fit=crop" alt="Set Casual Batik"/>
+          <span class="prod-card-badge badge-best">⭐ Hits</span>
+          <a href="https://wa.me/6281234567890?text=Halo%2C%20saya%20tertarik%20dengan%20*Casual%20Set%20Batik*%20di%20Tanah%20Langit." target="_blank" class="prod-card-wa">💬 Tanya & Order</a>
+        </div>
+        <div class="prod-card-body">
+          <div class="prod-card-cat">Set · Batik Casual</div>
+          <div class="prod-card-name">Casual Set Batik Cap</div>
+          <div class="prod-card-en">Batik Cap Casual Two-Piece Set</div>
+          <p class="prod-card-desc">Set atasan dan celana panjang dari batik cap motif kontemporer. Nyaman, stylish, dan mudah dipadukan.</p>
+          <div class="prod-card-footer">
+            <div>
+              <div class="prod-card-price">Rp 680.000</div>
+              <div class="prod-card-sizes">S · M · L · XL</div>
+            </div>
+            <a href="https://wa.me/6281234567890?text=Halo%2C%20saya%20tertarik%20dengan%20*Casual%20Set%20Batik%20Cap*." target="_blank" class="prod-card-btn">Order →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="prod-card reveal">
+        <div class="prod-card-img">
+          <img src="https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?w=500&q=80&fit=crop" alt="Tas Tenun"/>
+          <span class="prod-card-badge badge-limited">Limited</span>
+          <a href="https://wa.me/6281234567890?text=Halo%2C%20saya%20tertarik%20dengan%20*Tas%20Tenun%20Handmade*%20di%20Tanah%20Langit." target="_blank" class="prod-card-wa">💬 Tanya & Order</a>
+        </div>
+        <div class="prod-card-body">
+          <div class="prod-card-cat">Aksesoris · Handmade</div>
+          <div class="prod-card-name">Tas Tenun Handmade</div>
+          <div class="prod-card-en">Handwoven Tote Bag</div>
+          <p class="prod-card-desc">Tote bag dari tenun tangan motif geometris Nusantara. Kuat, cantik, dan mendukung pengrajin lokal.</p>
+          <div class="prod-card-footer">
+            <div>
+              <div class="prod-card-price">Rp 285.000</div>
+              <div class="prod-card-sizes">One Size</div>
+            </div>
+            <a href="https://wa.me/6281234567890?text=Halo%2C%20saya%20tertarik%20dengan%20*Tas%20Tenun%20Handmade*." target="_blank" class="prod-card-btn">Order →</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- STORY -->
+<div id="story">
+  <div class="story-grid">
+    <div class="story-img reveal">
+      <img src="https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=700&q=80&fit=crop" alt="Proses pembuatan batik"/>
+      <div class="story-img-caption">
+        <p>"Setiap motif adalah doa, setiap helai adalah cerita."<br/><span style="font-size:13px;opacity:0.7">"Every motif is a prayer, every thread tells a story."</span></p>
+      </div>
+    </div>
+    <div class="story-text reveal">
+      <div class="story-label">Brand Story · Tentang Kami</div>
+      <h2 class="story-title">Merayakan <em>Warisan Tekstil</em> Indonesia</h2>
+      <p class="story-p">Tanah Langit lahir dari kecintaan mendalam pada kekayaan tekstil tradisional Indonesia. Kami percaya bahwa batik, tenun, dan lurik bukan hanya kain — melainkan identitas dan kebanggaan bangsa.</p>
+      <p class="story-p-en">Tanah Langit was born from a deep love for Indonesia's rich textile heritage. We believe batik, tenun, and lurik are not just fabrics — they are our identity and pride.</p>
+      <p class="story-p">Setiap produk kami dibuat bersama pengrajin lokal dengan upah yang adil, menjaga tradisi tetap hidup sambil membawanya ke konteks modern.</p>
+      <div class="story-tags">
+        <span class="story-tag">🌿 Sustainable</span>
+        <span class="story-tag">🤝 Fair Trade</span>
+        <span class="story-tag">🇮🇩 Made in Indonesia</span>
+        <span class="story-tag">✋ Handcrafted</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- KEUNGGULAN -->
+<div id="keunggulan">
+  <div class="section-wrap">
+    <div class="section-header reveal">
+      <span class="sec-label">Keunggulan</span>
+      <h2 class="sec-title">Kenapa <em>Tanah Langit?</em></h2>
+      <div class="sec-line"></div>
+    </div>
+    <div class="k-grid">
+      <div class="k-card reveal">
+        <div class="k-icon">🧵</div>
+        <div class="k-title">Kain Asli</div>
+        <p class="k-desc">100% kain tradisional asli dari pengrajin Indonesia. Bukan print digital, bukan imitasi.<em>Authentic Indonesian textiles, not digital prints.</em></p>
+      </div>
+      <div class="k-card reveal">
+        <div class="k-icon">✂️</div>
+        <div class="k-title">Custom Ukuran</div>
+        <p class="k-desc">Tidak ketemu ukuranmu? Kami terima custom order sesuai ukuran badan kamu.<em>Can't find your size? We do custom orders.</em></p>
+      </div>
+      <div class="k-card reveal">
+        <div class="k-icon">📦</div>
+        <div class="k-title">Packaging Premium</div>
+        <p class="k-desc">Dikemas rapi dalam box branded, siap untuk hadiah atau hantaran spesial.<em>Neatly packed in branded box, perfect for gifting.</em></p>
+      </div>
+      <div class="k-card reveal">
+        <div class="k-icon">↩️</div>
+        <div class="k-title">Free Return</div>
+        <p class="k-desc">Tidak cocok? Tukar ukuran gratis dalam 7 hari setelah barang diterima.<em>Wrong size? Free exchange within 7 days.</em></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CARA ORDER -->
+<div id="order" style="border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+  <div class="section-wrap">
+    <div class="section-header reveal">
+      <span class="sec-label">Cara Beli</span>
+      <h2 class="sec-title">Simpel & <em>Aman</em></h2>
+      <div class="sec-line"></div>
+    </div>
+    <div class="order-grid">
+      <div class="order-step reveal">
+        <div class="order-num">01</div>
+        <div class="order-title">Pilih Produk</div>
+        <p class="order-desc">Jelajahi koleksi dan pilih produk yang kamu suka.<em>Browse our collection and pick your favorites.</em></p>
+      </div>
+      <div class="order-step reveal">
+        <div class="order-num">02</div>
+        <div class="order-title">Chat WA</div>
+        <p class="order-desc">Klik "Order" untuk langsung chat dengan tim kami di WhatsApp.<em>Tap "Order" to chat directly with our team.</em></p>
+      </div>
+      <div class="order-step reveal">
+        <div class="order-num">03</div>
+        <div class="order-title">Konfirmasi & Bayar</div>
+        <p class="order-desc">Konfirmasi ukuran, warna, dan transfer pembayaran. Aman dan mudah.<em>Confirm size, color, and transfer payment safely.</em></p>
+      </div>
+      <div class="order-step reveal">
+        <div class="order-num">04</div>
+        <div class="order-title">Terima & Pakai!</div>
+        <p class="order-desc">Paket dikirim dalam 1-3 hari kerja. Siap dipakai dengan bangga!<em>Shipped in 1-3 working days. Wear with pride!</em></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div id="cta">
+  <div class="cta-img"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1400&q=80&fit=crop" alt="bg"/></div>
+  <div class="cta-label reveal">Koleksi Terbatas</div>
+  <h2 class="cta-title reveal">Bangga Pakai<br/><em>Produk Lokal.</em></h2>
+  <p class="cta-sub reveal">Chat kami sekarang untuk info stok, ukuran, dan custom order. Tim kami siap membantu kamu menemukan pilihan terbaik.</p>
+  <a href="https://wa.me/6281234567890?text=Halo%20Tanah%20Langit%2C%20saya%20ingin%20melihat%20koleksi%20dan%20harga%20terbaru." target="_blank" class="cta-wa reveal">💬 Chat & Order via WhatsApp</a>
+  <div class="cta-note reveal">Respon cepat · Senin–Sabtu 09.00–21.00 · Free ongkir min. Rp 500.000</div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <a href="#hero" class="footer-logo">Tanah <span>Langit</span></a>
+    <span class="footer-copy">© 2025 Tanah Langit · Local Fashion Indonesia</span>
+  </div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.08 });
+  reveals.forEach(el => obs.observe(el));
+
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>
